@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install version="1.5" type="plugin" group="authentication">
-	<name>Authentication - Encryption</name>
+	<name>UserCrypt - user encryption - Authentication</name>
 	<author>CodeGravity.com</author>
 	<creationDate>August 2011</creationDate>
 	<copyright>(C) 2011 CodeGravity.com</copyright>
