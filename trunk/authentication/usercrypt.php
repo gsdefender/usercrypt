@@ -21,7 +21,7 @@ jimport( 'joomla.plugin.plugin' );
  * @subpackage	JFramework
  * @since 1.5
  */
-class plgAuthenticationJcrypt extends JPlugin
+class plgAuthenticationUserCrypt extends JPlugin
 {
 	private $_security_key = NULL;
 	
@@ -38,10 +38,10 @@ class plgAuthenticationJcrypt extends JPlugin
 	 * @param	array	$config		An array that holds the plugin configuration
 	 * @since	1.5
 	 */
-	function plgAuthenticationJcrypt(& $subject, $config)
+	function plgAuthenticationUserCrypt(& $subject, $config)
 	{
 		// load plugin params info
-		$plugin			=& JPluginHelper::getPlugin('user', 'jcrypt');
+		$plugin			=& JPluginHelper::getPlugin('user', 'usercrypt');
 		$pluginParams	= new JParameter($plugin->params);
 		
 		// set security key file content
@@ -77,7 +77,7 @@ class plgAuthenticationJcrypt extends JPlugin
 		if($this->_security_key != NULL && $this->_security_key != '') {
 			jimport('joomla.user.helper');
 	
-			$response->type = 'Jcrypt';
+			$response->type = 'UserCrypt';
 			
 			// Joomla does not like blank passwords
 			if (empty($credentials['password'])) {

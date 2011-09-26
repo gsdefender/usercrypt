@@ -21,7 +21,7 @@ jimport('joomla.plugin.plugin');
  * @subpackage	JFramework
  * @since 		1.5
  */
-class plgUserJcrypt extends JPlugin {
+class plgUserCrypt extends JPlugin {
 
 	private $_security_key = NULL;
 	
@@ -38,10 +38,10 @@ class plgUserJcrypt extends JPlugin {
 	 * @param 	array  $config  An array that holds the plugin configuration
 	 * @since 1.5
 	 */
-	function plgUserJcrypt(& $subject, $config)
+	function plgUserCrypt(& $subject, $config)
 	{
 		// load plugin params info
-		$plugin			=& JPluginHelper::getPlugin('user', 'jcrypt');
+		$plugin			=& JPluginHelper::getPlugin('user', 'usercrypt');
 		$pluginParams	= new JParameter($plugin->params);
 		
 		// set security key file content
