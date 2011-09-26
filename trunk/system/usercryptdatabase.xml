@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install version="1.5" type="plugin" group="system">
-	<name>Userencrypt - Abstraction Layer</name>
+	<name>UserCrypt - user encryption - Database Interceptor</name>
 	<author>CodeGravity.com</author>
 	<creationDate>August 2011</creationDate>
 	<copyright>(C) 2011 CodeGravity.com</copyright>
