@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install version="1.5" type="plugin" group="system">
 	<name>Userencrypt - Abstraction Layer</name>
-	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<author>Matej Koval</author>
-	<authorEmail>info@joomla.org</authorEmail>
-	<authorUrl>http://www.joomla.org</authorUrl>
-	<creationDate>2011-09-01</creationDate>
-	<copyright>Copyright (C) 2011 - 2015. All rights reserved.</copyright>
-	<version>1.0.0</version>
+	<author>CodeGravity.com</author>
+	<creationDate>August 2011</creationDate>
+	<copyright>(C) 2011 CodeGravity.com</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPLv3</license>
+	<authorEmail>foo@codegravity.com</authorEmail>
+	<authorUrl>www.codegravity.com</authorUrl>
+	<version>1.0</version>
 	<description>When activated this ensures that your system is automatically decrypting all user related database queries.</description>
 	<files>
 		<filename plugin="jcryptdatabase">jcryptdatabase.php</filename>

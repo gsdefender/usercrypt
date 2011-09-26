@@ -1,5 +1,15 @@
 <?php
-/** ensure this file is being included by a parent file */
+/**
+ * UserCrypt - Sensitive joomla user information encryption
+ * @package UserCrypt
+ * @version @VERSION@
+ * @revision @REVISION@
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt 	GNU General Public License v3
+ * @copyright (C) @YEAR@ by Matej Koval - All rights reserved!
+ * @website http://www.codegravity.com
+ **/
+
+ /** ensure this file is being included by a parent file */
 defined( '_JEXEC' ) or die( 'Restricted access' );
 	
 if ( !file_exists( dirname(__FILE__) .DS. 'jcryptdatabase' .DS. 'jcryptdatabase_inherit.php' )) {

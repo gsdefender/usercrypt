@@ -1,5 +1,15 @@
 <?php
-// Check to ensure this file is included in Joomla!
+/**
+ * UserCrypt - Sensitive joomla user information encryption
+ * @package UserCrypt
+ * @version @VERSION@
+ * @revision @REVISION@
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt 	GNU General Public License v3
+ * @copyright (C) @YEAR@ by Matej Koval - All rights reserved!
+ * @website http://www.codegravity.com
+ **/
+
+ // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted access' );
 
 jimport('joomla.plugin.plugin');
