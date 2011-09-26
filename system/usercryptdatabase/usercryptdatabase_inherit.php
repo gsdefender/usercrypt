@@ -1,16 +1,26 @@
 <?php
-// Don't allow direct linking
+/**
+ * UserCrypt - Sensitive joomla user information encryption
+ * @package UserCrypt
+ * @version @VERSION@
+ * @revision @REVISION@
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt 	GNU General Public License v3
+ * @copyright (C) @YEAR@ by Matej Koval - All rights reserved!
+ * @website http://www.codegravity.com
+ **/
+
+ // Don't allow direct linking
 defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 
 include_once(dirname(__FILE__)."/intercept.".strtolower(get_class(JFactory::getDBO())).".php");
 
 jimport('joomla.plugin.plugin');
 
-class JCryptDatabase extends interceptDB {
+class UserCryptDatabase extends interceptDB {
 	
 	/** Constructor
 	*/
-	function JCryptDatabase($options) {
+	function UserCryptDatabase($options) {
 		parent::__construct($options);
 	}
 	
@@ -28,7 +38,7 @@ class JCryptDatabase extends interceptDB {
 	function setQuery($query, $offset = 0, $limit = 0)
 	{
 		// load plugin params info
-		$plugin			=& JPluginHelper::getPlugin('user', 'jcrypt');
+		$plugin			=& JPluginHelper::getPlugin('user', 'usercrypt');
 		$pluginParams	= new JParameter($plugin->params);
 		
 		// set security key file content
@@ -209,7 +219,7 @@ class JCryptDatabase extends interceptDB {
 	function &getInstance( $driver='mysql', $host='localhost', $user, $pass, $db='', $table_prefix='' )
 	{
 		$signature = serialize(array($driver, $host, $user, $pass, $db, $table_prefix));
-		$database = JDatabase::_getStaticInstance($signature,'JCryptDatabase',true);
+		$database = JDatabase::_getStaticInstance($signature,'UserCryptDatabase',true);
 
 		return $database;
 	}

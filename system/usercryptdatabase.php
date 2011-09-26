@@ -12,7 +12,7 @@
  /** ensure this file is being included by a parent file */
 defined( '_JEXEC' ) or die( 'Restricted access' );
 	
-if ( !file_exists( dirname(__FILE__) .DS. 'jcryptdatabase' .DS. 'jcryptdatabase_inherit.php' )) {
+if ( !file_exists( dirname(__FILE__) .DS. 'usercryptdatabase' .DS. 'usercryptdatabase_inherit.php' )) {
 	JError::raiseNotice('no_jf_plugin', JText::_('Database plugin not installed correctly. Plugin not executed.'));
 	return;
 }
@@ -23,7 +23,7 @@ jimport('joomla.plugin.plugin');
 /**
 * Exchange of the database abstraction layer for multi lingual translations.
 */
-class plgSystemJCryptDatabase extends JPlugin{
+class plgSystemUserCryptDatabase extends JPlugin{
 	/**
 	 * stored configuration from plugin
 	 *
@@ -31,7 +31,7 @@ class plgSystemJCryptDatabase extends JPlugin{
 	 */
 	var $_config = null;
 
-	function plgSystemJCryptDatabase(& $subject, $config)
+	function plgSystemUserCryptDatabase(& $subject, $config)
 	{		
 		parent::__construct($subject, $config);
 
@@ -46,7 +46,7 @@ class plgSystemJCryptDatabase extends JPlugin{
 	function onAfterInitialise()
 	{
 		// load plugin params info
-		$plugin			=& JPluginHelper::getPlugin('user', 'jcrypt');
+		$plugin			=& JPluginHelper::getPlugin('user', 'usercrypt');
 		$pluginParams	= new JParameter($plugin->params);
 		
 		// set security key file content
@@ -93,13 +93,13 @@ class plgSystemJCryptDatabase extends JPlugin{
 			//============================================================================================
 		}
 		
-		$this->_setupJCryptDatabase(); // load new interceptor class
+		$this->_setupUserCryptDatabase(); // load new interceptor class
 	}
 	
-	function _setupJCryptDatabase()
+	function _setupUserCryptDatabase()
 	{
-		if (file_exists( dirname(__FILE__).DS.'jcryptdatabase'.DS.'jcryptdatabase_inherit.php' )) {
-			require_once( dirname(__FILE__).DS.'jcryptdatabase'.DS.'jcryptdatabase_inherit.php' );
+		if (file_exists( dirname(__FILE__).DS.'usercryptdatabase'.DS.'usercryptdatabase_inherit.php' )) {
+			require_once( dirname(__FILE__).DS.'usercryptdatabase'.DS.'usercryptdatabase_inherit.php' );
 			
 			$conf = JFactory::getConfig();
 
@@ -115,7 +115,7 @@ class plgSystemJCryptDatabase extends JPlugin{
 			$options = array("driver"=>$driver, "host"=>$host, "user"=>$user, "password"=>$password, "database"=>$db, "prefix"=>$dbprefix,"select"=>true);
 
 			$db = & JFactory::getDBO();
-			$db = new JCryptDatabase($options);
+			$db = new UserCryptDatabase($options);
 			$debug = $conf->getValue('config.debug');
 			$db->debug($debug);
 
