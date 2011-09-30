@@ -11,7 +11,6 @@
 	<description>This plugin encrypts all the user data (name, username, email) in users table. After installation and before activating this plugin, be sure to take full backup of the users table. Also please enter a file path (containing a secret security key, like - c3VwcmF0aW06WVdKalpERXlNelE9) in plugin parameter field (Security Key) to make this plugin work. On activating, this plugin will automatically encrypt existing users data using the security key in the file you mention in plugin parameter field.</description>
 	<files>
 		<filename plugin="usercrypt">usercrypt.php</filename>
-		<filename plugin="usercrypt">index.html</filename>
 	</files>
 	<params>
 		<param name="security_key" type="text" default="" label="Filesystem path to security key" description="" />
