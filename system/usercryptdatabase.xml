@@ -11,8 +11,10 @@
 	<description>When activated this ensures that your system is automatically decrypting all user related database queries.</description>
 	<files>
 		<filename plugin="usercryptdatabase">usercryptdatabase.php</filename>
+		<filename plugin="usercryptdatabase">index.html</filename>
 		<filename>usercryptdatabase/intercept.jdatabasemysql.php</filename>
 		<filename>usercryptdatabase/intercept.jdatabasemysqli.php</filename>
 		<filename>usercryptdatabase/usercryptdatabase_inherit.php</filename>
+		<filename>usercryptdatabase/index.html</filename>
 	</files>
 </install>
