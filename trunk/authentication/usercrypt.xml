@@ -11,7 +11,6 @@
 	<description>This plugin helps to authenticate users with actual username and password while their data are in encrypted stage in database.</description>
 	<files>
 		<filename plugin="usercrypt">usercrypt.php</filename>
-		<filename plugin="usercrypt">index.html</filename>
 	</files>
 	<params/>
 </install>
