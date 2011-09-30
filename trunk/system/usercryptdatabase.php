@@ -47,6 +47,9 @@ class plgSystemUserCryptDatabase extends JPlugin{
 	{
 		// load plugin params info
 		$plugin			=& JPluginHelper::getPlugin('user', 'usercrypt');
+        if (!$plugin) {
+            return;
+        }
 		$pluginParams	= new JParameter($plugin->params);
 		
 		// set security key file content
