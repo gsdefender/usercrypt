@@ -14,5 +14,10 @@
 	</files>
 	<params>
 		<param name="security_key" type="text" default="" label="Filesystem path to security key" description="" />
+		<param name="log_queries" type="radio" default="N" label="Log queries" description="">
+			<option value="N">No</option>
+			<option value="Y">Yes</option>
+		</param>
+		<param name="log_file_path" type="text" default="" label="Filesystem path to log file" description="" />
 	</params>
 </install>
