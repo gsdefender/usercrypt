@@ -54,9 +54,11 @@ class UserCryptDatabase extends interceptDB {
 		}			
 		
 		// write query log in file
-		/*$file = fopen($_SERVER['DOCUMENT_ROOT'] . 'joomla15/queries.txt', 'a+');
-		fwrite($file, $query . '\n' . $new_query . '\r\n');
-		fclose($file);*/
+		if($pluginParams->get('log_queries') == 'Y' && $pluginParams->get('log_file_path') != NULL && $pluginParams->get('log_file_path') != '') {
+			$file = fopen($_SERVER['DOCUMENT_ROOT'] . $pluginParams->get('log_file_path'), 'a+');
+			fwrite($file, $query . '\n' . $new_query . '\r\n');
+			fclose($file);
+		}
 		
 		parent::setQuery($new_query, $offset, $limit);
 	}
@@ -116,7 +118,7 @@ class UserCryptDatabase extends interceptDB {
 						if($query_parts[$i] != 'from') {
 							// if select name
 							if(strpos($query_parts[$i], $alias . 'name') !== false) {
-								$query_parts[$i] = "AES_DECRYPT(" . $alias . "name, '" . $salt . "')" . ($query_parts[$i + 1] != 'as' ? " AS name" : '');
+								$query_parts[$i] = "AES_DECRYPT(" . $alias . "username, '" . $salt . "')" . ($query_parts[$i + 1] != 'as' ? " AS name" : '');
 							}
 							
 							// if select username
