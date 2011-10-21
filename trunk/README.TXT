@@ -62,17 +62,9 @@ TEST:
 2. The data of this table should not contain any plain email addressess or usernames, but just numbers within range 0-9 and letters a-f
 
 
-
-
 HOW TO REVERT IT ALL BACK AND GET DECRYPTED USER INFO?
 ======================================================
 
-Deactivate the plugins, and execute the following commands via phpMyAdmin:
-(replace SECURITY_KEY with content from your file (also with <?php ?> tags)
+1. Deactivate the 'UserCrypt - user encrypt - Database Interceptor' plugin, database will be reverted back to the normal state.
 
-UPDATE jos_users set name=AES_DECRYPT(name, 'SECURITY_KEY'), username=AES_DECRYPT(username, 'SECURITY_KEY'), email=AES_DECRYPT(email, 'SECURITY_KEY');
-
-ALTER TABLE `jos_users` 
-CHANGE `name` `name` VARCHAR( 255 ) NOT NULL , 
-CHANGE `username` `username` VARCHAR( 150 ) NOT NULL,
-CHANGE `email` `email` VARCHAR( 100 ) NOT NULL 
+2. Replace SECURITY_KEY with content from your file (also with <?php ?> tags)
