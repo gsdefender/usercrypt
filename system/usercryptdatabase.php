@@ -127,4 +127,78 @@ class plgSystemUserCryptDatabase extends JPlugin{
 			}
 		}
 	}
+	function onAfterRoute()
+	{
+		$app = JFactory::getApplication();
+		if('com_plugins' == JRequest::getCMD('option') && $app->isAdmin())
+		{
+			$task = JRequest::getVar( 'task','','post');
+			$cid = JRequest::getVar( 'cid', array(0), 'post', 'array' );
+			$db = & JFactory::getDBO();
+			$query = 'select element,folder from #__plugins
+					  where id = '.$cid[0];
+			$db->setQuery($query);
+			$result = $db->loadAssoc();
+			if($task == 'unpublish' && $result['element'] == 'usercryptdatabase' && $result['folder'] == 'system')
+			{	
+				$db->setQuery('describe #__users');
+				$db->query();
+				$results = $db->loadObjectList();
+				$flag=1;
+				foreach($results as $result) {
+					if(($result->Field == 'name' && strpos(strtolower($result->Type), 'varbinary') === false) || 
+					   ($result->Field == 'username' && strpos(strtolower($result->Type), 'varbinary') === false)|| 
+					   ($result->Field == 'email' && strpos(strtolower($result->Type), 'varbinary') === false))
+					{
+						$flag=0;
+						break;
+					}
+				}
+				if($flag==0) {
+					return;
+				}
+				$query="select params from #__plugins
+						where element='usercrypt' and folder='user'";
+				$db->setQuery($query);
+				$result = $db->loadAssoc();
+				if(!$result['params']) {
+					return;
+				}
+				$key_file=trim(substr($result['params'],strpos($result['params'],'=')+1));
+				$security_key = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $key_file);
+				$query="update #__users
+						set
+						name=AES_DECRYPT(name,'{$security_key}'),
+						username=AES_DECRYPT(username,'{$security_key}'),
+						email=AES_DECRYPT(email,'{$security_key}')";
+				$db->setQuery( $query );
+				if (!$db->query()) {
+					JError::raiseError(500, $db->getErrorMsg() );
+				}
+				
+				$db->setQuery('describe #__users');
+				$db->query();
+				$results = $db->loadObjectList();
+				foreach($results as $result) 
+				{
+					if($result->Field == 'name' && strpos(strtolower($result->Type), 'varchar') === false)
+					{
+						$db->setQuery('alter table #__users modify name varchar(255) not null');
+						$db->query();
+					}
+					if($result->Field == 'username' && strpos(strtolower($result->Type), 'varchar') === false)
+					{
+						$db->setQuery('alter table #__users modify username varchar(150) not null');
+						$db->query();
+					}
+					if($result->Field == 'email' && strpos(strtolower($result->Type), 'varchar') === false)
+					{
+						$db->setQuery('alter table #__users modify email varchar(100) not null');
+						$db->query();
+						
+					}
+				}
+			}
+		}
+	}
 }

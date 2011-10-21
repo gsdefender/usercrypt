@@ -59,7 +59,7 @@ class UserCryptDatabase extends interceptDB {
 			fwrite($file, $query . '\n' . $new_query . '\r\n');
 			fclose($file);
 		}
-		
+
 		parent::setQuery($new_query, $offset, $limit);
 	}
 	
@@ -88,7 +88,8 @@ class UserCryptDatabase extends interceptDB {
 					strpos(strtolower($query), 'update') === false && 
 					strpos(strtolower($query), 'delete from') === false && 
 					strpos(strtolower($query), 'aes_encrypt') === false && 
-					strpos(strtolower($query), 'aes_decrypt') === false
+					strpos(strtolower($query), 'aes_decrypt') === false &&
+					strpos(strtolower($query), 'alter') === false
 					) {
 					
 					// make the query lowercase
@@ -118,7 +119,7 @@ class UserCryptDatabase extends interceptDB {
 						if($query_parts[$i] != 'from') {
 							// if select name
 							if(strpos($query_parts[$i], $alias . 'name') !== false) {
-								$query_parts[$i] = "AES_DECRYPT(" . $alias . "username, '" . $salt . "')" . ($query_parts[$i + 1] != 'as' ? " AS name" : '');
+								$query_parts[$i] = "AES_DECRYPT(" . $alias . "name, '" . $salt . "')" . ($query_parts[$i + 1] != 'as' ? " AS name" : '');
 							}
 							
 							// if select username
