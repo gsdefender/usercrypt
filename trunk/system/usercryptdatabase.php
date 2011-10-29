@@ -164,7 +164,8 @@ class plgSystemUserCryptDatabase extends JPlugin{
 				if(!$result['params']) {
 					return;
 				}
-				$key_file=trim(substr($result['params'],strpos($result['params'],'=')+1));
+                $params = strtok($result['params'],"\n");
+				$key_file=trim(substr($params,strpos($params,'=')+1));
 				$security_key = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $key_file);
 				$query="update #__users
 						set
