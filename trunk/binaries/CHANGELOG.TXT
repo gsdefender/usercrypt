@@ -1,0 +1,7 @@
+
+29.10.2011 - version 1.1
+
+- fixed problem with forgotten password (wrong field was used in query)
+- added query log on jos_users table
+- jos_users decryption on database interceptor plugin deactivation
+- tested without any problem on Joomla 1.5
