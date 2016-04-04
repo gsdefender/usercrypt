@@ -1,0 +1,3 @@
+Joomla CMS user plugin which protects all sensitive user data from being stolen by encrypting them on database level. So when someone finds a dump of your database, or creates this dump when hacking your website, all this information are unusable unless you have the correct key.
+This is very useful for websites having huge amount of registered users and don't want these sensitive information to be exposed.
+The encryption is more or less transparent, so all 3rd party extensions are allowed to read user tables via SQL queries or API without a problem.
